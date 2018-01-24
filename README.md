@@ -98,7 +98,9 @@ Cons:
 
 ### React Native Navigation (Wix v1 naivator)
 
-Pull Request:  [React Native Navigation (wix navigator) v1](https://github.com/nixterrimus/navToy/pull/4)
+- Pull Request:  [React Native Navigation (wix navigator) v1](https://github.com/nixterrimus/navToy/pull/4)
+- Github: https://github.com/wix/react-native-navigation
+- Docs: https://wix.github.io/react-native-navigation/#/
 
 After Facebook stopped maintaining the Navigator iOS, Wix started working on a native navigator to take it's place.  v1 is actively maintained.
 
@@ -111,7 +113,8 @@ Cons:
 
 ### React Native Navigation (Wix v2 naivator)
 
-Pull request: [React Native Navigation (wix navigator) v2](https://github.com/nixterrimus/navToy/pull/5)
+- Pull request: [React Native Navigation (wix navigator) v2](https://github.com/nixterrimus/navToy/pull/5)
+- Github: https://github.com/wix/react-native-navigation/tree/v2
 
 The second generation of wix's navigator.  The navigator includes years of lessons and aims to make it easy to push screens from anywhere you might need to (including redux reducers).  It's not released, it's not stable, and I've not seen anyone advocating that it's ready to be used in production code.  It's included here as a peak at what's to come.
 
