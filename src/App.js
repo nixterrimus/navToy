@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View, NavigatorIOS } from "react-native";
 
 import BadgeList from "./badgesList";
 import BadgeDetail from "./badgeDetail";
 
-export default class App extends Component {
+export default class NavigatorIOSApp extends Component {
   constructor(props) {
     super(props);
 
@@ -21,31 +21,37 @@ export default class App extends Component {
       categories: categories
     };
   }
+
   render() {
     return (
-      <View
-        style={{
-          flex: 1,
-          marginTop: 22
-        }}
-      >
-        {/* <BadgeDetail
-          badgeUrl="https://cdn.kastatic.org/images/badges/moon/fact-checker-512x512.png"
-          title="Fact Checker"
-          description="Have a video clarification officially accepted"
-          onBack={() => {
-            alert("Back");
-          }}
-        /> */}
+      <NavigatorIOS
+        initialRoute={{
+          component: BadgeList,
+          title: "All Badges",
+          passProps: {
+            badgeList: this.state.badgeList,
+            categories: this.state.categories,
+            onNavigateToBadge: badgeName => {
+              const badge = this.state.badgeList.filter(
+                badge => badge.key === badgeName
+              )[0];
 
-        <BadgeList
-          badgeList={this.state.badgeList}
-          categories={this.state.categories}
-          onNavigateToBadge={badgeName => {
-            alert(`Visit ${badgeName}`);
-          }}
-        />
-      </View>
+              this.navigator.push({
+                component: BadgeDetail,
+                title: "Badge",
+                passProps: {
+                  badgeUrl: badge.icons.large,
+                  description: badge.safe_extended_description,
+                  title: badge.translated_description,
+                  onBack: () => {}
+                }
+              });
+            }
+          }
+        }}
+        ref={navigator => (this.navigator = navigator)}
+        style={{ flex: 1 }}
+      />
     );
   }
 }
