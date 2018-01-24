@@ -1,15 +1,39 @@
 import React, { Component } from "react";
-import { Platform, StyleSheet, Image, Text, View } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  Image,
+  Text,
+  View,
+  TouchableOpacity
+} from "react-native";
 
 export default class BadgeDetail extends Component {
   render() {
-    const { badgeUrl, title, description } = this.props;
+    const { badgeUrl, title, description, onBack } = this.props;
     return (
       <View
         style={{
           flex: 1
         }}
       >
+        <View
+          style={{
+            paddingVertical: 10,
+            paddingHorizontal: 8
+          }}
+        >
+          <TouchableOpacity onPress={onBack}>
+            <Image
+              source={require("../../right.png")}
+              style={{
+                width: 22,
+                height: 22,
+                transform: [{ rotateZ: "180deg" }]
+              }}
+            />
+          </TouchableOpacity>
+        </View>
         <View
           style={{
             justifyContent: "center",
