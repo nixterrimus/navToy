@@ -56,14 +56,28 @@ Pull request: [No Navigator, just set state](https://github.com/nixterrimus/navT
 
 This is the most basic version of moving amonst the screens.  This serves as the control- all other navigators should feel better than this!
 
+Pros:
+- No dependencies
+- Very simple
+
+Cons:
+- None of the expected navigator behavior
+
 ### Built in Navigator 
 
-Pull Request: [Built in iOS navigator](https://github.com/nixterrimus/navToy/pull/3)
+- Pull Request: [Built in iOS navigator](https://github.com/nixterrimus/navToy/pull/3)
+- Docs: https://facebook.github.io/react-native/docs/navigatorios.html
 
 The official Navigator built into React Native.
 
-- Docs: https://facebook.github.io/react-native/docs/navigatorios.html
+Pros:
+- Uses system technology
+- In the React Native core
 
+Cons:
+- Not maintained
+- Slow for first push (something getting warmed up?)
+- No Android version
 
 ### React Navigation
 
@@ -76,6 +90,7 @@ The commmunity supported, completely-JS navigation solution.
 Pros:
 - Install everywhere- because it's pure JS it can be installed in Expo apps, Expo snacks, or other constrained environments
 - Theoretically can be used on the web (but according to React Native Radio interivew it's not currently used or maintained by anyone)
+- Embraces the "everything is a component, nothing is special" react model
 
 Cons:
 - Pure JS means that gestures are never going to feel quite right
@@ -87,11 +102,24 @@ Pull Request:  [React Native Navigation (wix navigator) v1](https://github.com/n
 
 After Facebook stopped maintaining the Navigator iOS, Wix started working on a native navigator to take it's place.  v1 is actively maintained.
 
+Pros:
+- Correct feeling navigation (uses system native code)
+
+Cons:
+- Requires native code changes to integrate
+- Not as widely known/marketed as other solutions
+
 ### React Native Navigation (Wix v2 naivator)
 
 Pull request: [React Native Navigation (wix navigator) v2](https://github.com/nixterrimus/navToy/pull/5)
 
 The second generation of wix's navigator.  The navigator includes years of lessons and aims to make it easy to push screens from anywhere you might need to (including redux reducers).  It's not released, it's not stable, and I've not seen anyone advocating that it's ready to be used in production code.  It's included here as a peak at what's to come.
+
+Pros:
+- Everything good about v1 + easier integration into redux
+
+Cons:
+- Not released yet, all other cons should be evaluated when released
 
 ## Which Navigator should I use?
 
