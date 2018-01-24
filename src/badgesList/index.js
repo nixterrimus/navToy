@@ -76,7 +76,7 @@ class BadgeItem extends Component {
   }
 }
 
-export default class BadgeList extends Component {
+export class BadgeList extends Component {
   categoryName(categories, categoryId) {
     return categories.filter(category => category.category == categoryId)[0]
       .type_label;
@@ -102,6 +102,31 @@ export default class BadgeList extends Component {
           )}
         />
       </View>
+    );
+  }
+}
+
+export default class NavigateableBadgeList extends Component {
+  render() {
+    return (
+      <BadgeList
+        {...this.props}
+        onNavigateToBadge={badgeName => {
+          const badge = this.props.badgeList.filter(
+            badge => badge.key === badgeName
+          )[0];
+
+          this.props.navigator.push({
+            screen: "badgeDetail",
+            title: badge.translated_description,
+            passProps: {
+              badgeUrl: badge.icons.large,
+              description: badge.safe_extended_description,
+              title: badge.translated_description
+            }
+          });
+        }}
+      />
     );
   }
 }
