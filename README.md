@@ -20,10 +20,10 @@ This repo exists to try out all of the React Native Navigation options with a tw
 
 Displays a list of badges.
 
-Props:
-- badgeList: A list of badge in the format returned from the [Khan Academy badge API](http://api.khanacademy.org/api/v1/badges)
-- categories: A list of categories in the format returned by the [Khan Academy Badge category API](http://api.khanacademy.org/api/v1/badges/categories)
-- onNavigateToBadge: Called when one of the badges is tapped, sends along the badgeName (`.name` in the JSON)
+**Props:**
+- `badgeList`: A list of badge in the format returned from the [Khan Academy badge API](http://api.khanacademy.org/api/v1/badges)
+- `categories`: A list of categories in the format returned by the [Khan Academy Badge category API](http://api.khanacademy.org/api/v1/badges/categories)
+- `onNavigateToBadge`: Called when one of the badges is tapped, sends along the badgeName (`.name` in the JSON)
 
 ## The Badge detail screen
 
@@ -40,11 +40,11 @@ Props:
 
 Displays detail about one badge
 
-Props:
-- badgeUrl: A string for the URL for the badge
-- title: The name of the badge
-- description: a human description of what the badge can be earned for
-- onBack: Called when the back button is hit
+**Props:**
+- `badgeUrl`: A string for the URL for the badge
+- `title`: The name of the badge
+- `description`: a human description of what the badge can be earned for
+- `onBack`: Called when the back button is hit
 
 ## Navigator tested
 
