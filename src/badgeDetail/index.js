@@ -7,8 +7,9 @@ import {
   View,
   TouchableOpacity
 } from "react-native";
+import { BadgeList } from "../badgesList/index";
 
-export default class BadgeDetail extends Component {
+class BadgeDetail extends Component {
   render() {
     const { badgeUrl, title, description, onBack } = this.props;
     return (
@@ -90,6 +91,30 @@ export default class BadgeDetail extends Component {
           </Text>
         </View>
       </View>
+    );
+  }
+}
+
+const badges = require("../../badges.json");
+const badgeList = badges.map(item => ({
+  ...item,
+  key: item.name
+}));
+
+export default class BadgeDataFromNavigation extends Component {
+  render() {
+    const badgeName = this.props.navigation.state.params.name;
+    const badge = badgeList.filter(badge => badge.key === badgeName)[0];
+
+    return (
+      <BadgeDetail
+        badgeUrl={badge.icons.large}
+        title={badge.translated_description}
+        description={badge.safe_extended_description}
+        onBack={() => {
+          this.props.navigation.goBack();
+        }}
+      />
     );
   }
 }

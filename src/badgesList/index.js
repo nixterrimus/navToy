@@ -76,7 +76,7 @@ class BadgeItem extends Component {
   }
 }
 
-export default class BadgeList extends Component {
+export class BadgeList extends Component {
   categoryName(categories, categoryId) {
     return categories.filter(category => category.category == categoryId)[0]
       .type_label;
@@ -84,10 +84,12 @@ export default class BadgeList extends Component {
 
   render() {
     const { badgeList, categories, onNavigateToBadge } = this.props;
+
     return (
       <View
         style={{
-          flex: 1
+          flex: 1,
+          backgroundColor: "white"
         }}
       >
         <FlatList
@@ -97,11 +99,41 @@ export default class BadgeList extends Component {
               title={item.description}
               subtitle={this.categoryName(categories, item.badge_category)}
               iconUrl={item.icons.small}
-              onPressRow={() => onNavigateToBadge(item.name)}
+              onPressRow={() =>
+                this.props.navigation.navigate("Badge", { name: item.name })
+              }
             />
           )}
         />
       </View>
+    );
+  }
+}
+
+export default class BadgesListWithData extends Component {
+  constructor(props) {
+    super(props);
+    const badges = require("../../badges.json");
+    const badgeList = badges.map(item => ({
+      ...item,
+      key: item.name
+    }));
+
+    const categories = require("../../categories.json");
+
+    this.state = {
+      badgeList: badgeList,
+      categories: categories
+    };
+  }
+
+  render() {
+    return (
+      <BadgeList
+        badgeList={this.state.badgeList}
+        categories={this.state.categories}
+        {...this.props}
+      />
     );
   }
 }
