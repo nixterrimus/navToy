@@ -18,7 +18,8 @@ export default class App extends Component {
 
     this.state = {
       badgeList: badgeList,
-      categories: categories
+      categories: categories,
+      selectedBadge: null
     };
   }
   render() {
@@ -29,23 +30,42 @@ export default class App extends Component {
           marginTop: 22
         }}
       >
-        {/* <BadgeDetail
-          badgeUrl="https://cdn.kastatic.org/images/badges/moon/fact-checker-512x512.png"
-          title="Fact Checker"
-          description="Have a video clarification officially accepted"
-          onBack={() => {
-            alert("Back");
-          }}
-        /> */}
+        {this.renderScene(this.state)}
+      </View>
+    );
+  }
 
+  renderScene(state) {
+    if (state.selectedBadge) {
+      return (
+        <BadgeDetail
+          badgeUrl={state.selectedBadge.badgeUrl}
+          title={state.selectedBadge.title}
+          description={state.selectedBadge.description}
+          onBack={() => {
+            this.setState({ selectedBadge: null });
+          }}
+        />
+      );
+    } else {
+      return (
         <BadgeList
           badgeList={this.state.badgeList}
           categories={this.state.categories}
           onNavigateToBadge={badgeName => {
-            alert(`Visit ${badgeName}`);
+            const badge = this.state.badgeList.filter(
+              badge => badge.key === badgeName
+            )[0];
+            this.setState({
+              selectedBadge: {
+                title: badge.translated_description,
+                description: badge.safe_extended_description,
+                badgeUrl: badge.icons.large
+              }
+            });
           }}
         />
-      </View>
-    );
+      );
+    }
   }
 }
