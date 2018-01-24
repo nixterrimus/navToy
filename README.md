@@ -67,9 +67,19 @@ The official Navigator built into React Native.
 
 ### React Navigation
 
-Pull request: [React Navigation](https://github.com/nixterrimus/navToy/pull/2)
+- Pull request: [React Navigation](https://github.com/nixterrimus/navToy/pull/2)
+- Docs: [React Navigation](https://reactnavigation.org)
+- Github: [React Navigation](https://github.com/react-navigation/react-navigation)
 
 The commmunity supported, completely-JS navigation solution.
+
+Pros:
+- Install everywhere- because it's pure JS it can be installed in Expo apps, Expo snacks, or other constrained environments
+- Theoretically can be used on the web (but according to React Native Radio interivew it's not currently used or maintained by anyone)
+
+Cons:
+- Pure JS means that gestures are never going to feel quite right
+- For complex screen it takes a long time to push which can cause users to take more than once and more than one screeen to get pushed
 
 ### React Native Navigation (Wix v1 naivator)
 
@@ -78,8 +88,10 @@ Pull Request:  [React Native Navigation (wix navigator) v1](https://github.com/n
 After Facebook stopped maintaining the Navigator iOS, Wix started working on a native navigator to take it's place.  v1 is actively maintained.
 
 ### React Native Navigation (Wix v2 naivator)
+
 Pull request: [React Native Navigation (wix navigator) v2](https://github.com/nixterrimus/navToy/pull/5)
 
+The second generation of wix's navigator.  The navigator includes years of lessons and aims to make it easy to push screens from anywhere you might need to (including redux reducers).  It's not released, it's not stable, and I've not seen anyone advocating that it's ready to be used in production code.  It's included here as a peak at what's to come.
 
 ## Which Navigator should I use?
 
@@ -92,4 +104,4 @@ React Navigation, because it's all JS, fits in everywhere.  It's really easy to 
 ## General lessons learned
 
 - Think about screen as a whole component: figure out what the exit paths are from that screen and make them available via standard callback handler (`onNavigateToBadge(badgeName) => void`)
-- Build higher order components around those base screens that hook into the unique navigator- this makes it easier to choose different navigators
+- Build higher order components around those base screens that hook into the unique navigator- this makes it easier to choose different navigators: the wix v1/v2 versions of this code are very similar because this is a pattern that works well!
