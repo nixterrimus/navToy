@@ -8,6 +8,7 @@ import {
   Image,
   TouchableHighlight
 } from "react-native";
+import * as Navigation from "react-native-navigation";
 
 class BadgeItem extends Component {
   render() {
@@ -76,7 +77,7 @@ class BadgeItem extends Component {
   }
 }
 
-export default class BadgeList extends Component {
+export class BadgeList extends Component {
   categoryName(categories, categoryId) {
     return categories.filter(category => category.category == categoryId)[0]
       .type_label;
@@ -102,6 +103,37 @@ export default class BadgeList extends Component {
           )}
         />
       </View>
+    );
+  }
+}
+
+export default class NavigateableBadgeList extends Component {
+  render() {
+    return (
+      <BadgeList
+        {...this.props}
+        onNavigateToBadge={badgeName => {
+          const badge = this.props.badgeList.filter(
+            badge => badge.key === badgeName
+          )[0];
+
+          Navigation.default.push(this.props.componentId, {
+            component: {
+              name: "BadgeDetail",
+              passProps: {
+                badgeUrl: badge.icons.large,
+                description: badge.safe_extended_description,
+                title: badge.translated_description
+              },
+              options: {
+                topBar: {
+                  title: badge.translated_description
+                }
+              }
+            }
+          });
+        }}
+      />
     );
   }
 }
